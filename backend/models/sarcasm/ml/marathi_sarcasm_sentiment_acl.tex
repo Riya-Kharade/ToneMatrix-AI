@@ -1,0 +1,226 @@
+\documentclass[11pt]{article}
+
+% ACL template
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\title{Marathi Sarcasm and Sentiment Analysis Using Machine Learning, Deep Learning, and Transformer-Based Approaches}
+
+% Replace the second author placeholder with your teammate's name.
+\author{Riya Kharade \\
+Vidyalankar Institute of Technology, Mumbai, India \\
+\texttt{riyakharade.vit@gmail.com}
+\And
+Teammate Name \\
+Vidyalankar Institute of Technology, Mumbai, India \\
+\texttt{teammate@email.com}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Marathi is widely used in social media and other online communication, but language technologies for Marathi still have fewer resources than those available for English and other high-resource languages. This paper presents a Marathi text analysis system that focuses on two related tasks: sentiment analysis and sarcasm detection. The sentiment module uses a 5,000-sample Marathi dataset containing positive, negative, and neutral statements. The data was checked for missing values, duplicate records, duplicate texts, label consistency, and text-quality issues before model training. Marathi-aware TF-IDF features were then used with five classical machine learning algorithms: Logistic Regression, Multinomial Naive Bayes, Support Vector Machine, Random Forest, and Decision Tree. Among these models, Multinomial Naive Bayes achieved the best performance on the held-out test set, reaching 97.6\% accuracy and a 97.6\% F1-score. A separate Marathi sarcasm dataset is used for the second module, and the same general preprocessing and model-comparison pipeline is being applied to it. The work is further extended toward deep learning and transformer-based approaches. The final application is designed to provide sentiment analysis, sarcasm detection, and combined analysis for Marathi text in a single user-facing system.
+\end{abstract}
+
+\section{Introduction}
+Natural language processing has become an important part of systems that work with user-generated text. Social media, reviews, comments, and online discussions contain useful information about people's opinions and reactions. However, language remains an important challenge when such systems are developed for Indian regional languages. Marathi is one of the widely spoken Indian languages, yet practical NLP resources and annotated datasets are still more limited than those available for English.
+
+Sentiment analysis is the task of identifying the overall opinion expressed in a text. In this work, sentiment is treated as a three-class problem with positive, negative, and neutral categories. Such systems can be useful for analysing customer feedback, online discussions, reviews, and public responses.
+
+Sarcasm detection is more difficult because the literal meaning of a sentence may not match its intended meaning. A sentence may contain positive-looking words while actually expressing criticism or dissatisfaction. This makes sarcasm an important complementary task for sentiment analysis, especially for informal social media text.
+
+The objective of this work is to develop a Marathi text analysis system that handles both tasks. The two modules are implemented separately so that they can be evaluated independently, while the application can also provide a combined result for the same input. The study begins with classical machine learning methods and is planned to extend the comparison to deep learning and transformer-based models.
+
+The main contributions of this work are: (1) preparation and quality checking of a 5,000-sample Marathi sentiment dataset; (2) a comparative evaluation of five classical machine learning models for sentiment classification; (3) a separate Marathi sarcasm detection pipeline; and (4) a practical application design that combines the two analyses for end users.
+
+\section{Related Work}
+Sentiment analysis has been studied using both traditional machine learning and neural approaches. Classical text classifiers such as Naive Bayes, linear Support Vector Machines, and Logistic Regression are widely used with bag-of-words and TF-IDF representations. Naive Bayes provides a simple probabilistic baseline, while linear SVMs and Logistic Regression are strong choices for sparse text features \citep{manning2008,joachims1998,pedregosa2011}.
+
+Tree-based methods such as Decision Trees and Random Forests have also been used for text classification, although their performance can depend strongly on the feature representation \citep{quinlan1986,breiman2001}. More recently, transformer architectures have changed NLP by providing contextual representations that can be transferred across many language tasks \citep{vaswani2017,devlin2019}.
+
+Sarcasm detection presents an additional challenge because understanding the intended meaning often requires context and discourse-level cues. This motivates the use of models that can capture relationships beyond individual words. In the present study, classical machine learning is used as the first comparison stage, while deep learning and transformer approaches are considered as subsequent stages.
+
+\section{Datasets}
+\subsection{Marathi Sentiment Dataset}
+The sentiment module uses a dataset containing 5,000 Marathi text samples. Each record contains an identifier, the text, a sentiment label, and a domain field. The three sentiment classes are Positive, Negative, and Neutral. The class distribution is nearly balanced, with 1,672 positive samples, 1,668 negative samples, and 1,660 neutral samples.
+
+The dataset was created for the project and was reviewed before model training. No missing values were found. The complete rows were unique, the text values were unique, and no duplicate text--label combinations were found. The domain column was retained for future analysis but was not supplied as a feature to the sentiment classifiers.
+
+\subsection{Marathi Sarcasm Dataset}
+The sarcasm module uses a separate Marathi dataset containing three fields: \texttt{id}, \texttt{Label}, and \texttt{clean\_tweet\_v2}. The provided dataset contains 5,666 records in its current form, and an initial check identified one missing text value. The labels are numeric, with both \texttt{-1} and \texttt{1} represented in the supplied data. \citep{teammatedataset}
+
+The sarcasm data will be cleaned and checked using the same general principles applied to the sentiment data, including missing-value handling, duplicate checking, text cleaning, label validation, and class-distribution analysis. Final sarcasm results will be reported after that evaluation is completed.
+
+\section{Data Preprocessing}
+The preprocessing pipeline was kept deliberately simple so that useful information in Marathi text was not removed unnecessarily. The main checks were missing-value detection, empty-text detection, duplicate-row detection, duplicate-text detection, and validation of the target labels. Extra leading, trailing, and repeated whitespace was normalized.
+
+Text length and word-count statistics were also inspected. The sentiment sentences had an average length of about 49 characters and about 7.6 words. No extreme text lengths were found that required removing valid samples. Stemming, aggressive stop-word removal, and translation were not used because such operations can remove information that is useful for sentiment interpretation.
+
+\section{Methodology}
+The overall workflow is shown below.
+
+\begin{quote}
+Marathi text $\rightarrow$ preprocessing $\rightarrow$ feature representation $\rightarrow$ ML/DL/Transformer model $\rightarrow$ prediction
+\end{quote}
+
+\subsection{Train--Test Split}
+For sentiment analysis, the data was split into 80\% training and 20\% testing data using stratified sampling. This produced 4,000 training samples and 1,000 test samples while preserving the balance between the three sentiment classes.
+
+\subsection{TF-IDF Representation}
+TF-IDF was used to convert Marathi text into numerical features for the classical machine learning experiments. A Unicode-aware tokenizer was used so that Devanagari words were preserved as complete tokens rather than being broken into fragments. Both unigrams and bigrams were included. The final sentiment representation contained 3,711 features.
+
+The vectorizer was fitted only on the training set and then applied to the test set. This prevents information from the test set from influencing the learned vocabulary.
+
+\subsection{Machine Learning Models}
+Five classifiers were compared for sentiment analysis: Logistic Regression, Multinomial Naive Bayes, Support Vector Machine, Random Forest, and Decision Tree. The same TF-IDF representation and the same train--test split were used for every model so that the comparison remained consistent.
+
+Performance was measured using accuracy, weighted precision, weighted recall, and weighted F1-score. Confusion matrices and class-wise classification reports were also examined.
+
+\section{Sentiment Analysis Results}
+The results of the five classical machine learning models are shown in Table~\ref{tab:sentiment-results}.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Model & Acc. & Prec. & Rec. & F1 \\
+\midrule
+Logistic Regression & 97.20 & 97.20 & 97.20 & 97.20 \\
+Multinomial Naive Bayes & \textbf{97.60} & \textbf{97.61} & \textbf{97.60} & \textbf{97.60} \\
+SVM & 97.40 & 97.41 & 97.40 & 97.40 \\
+Random Forest & 96.00 & 96.04 & 96.00 & 96.00 \\
+Decision Tree & 94.70 & 94.76 & 94.70 & 94.71 \\
+\bottomrule
+\end{tabular}
+\caption{Performance of the five machine learning models on the Marathi sentiment test set. Values are percentages.}
+\label{tab:sentiment-results}
+\end{table}
+
+Multinomial Naive Bayes achieved the best overall performance, with 97.6\% accuracy and 97.6\% F1-score. SVM and Logistic Regression were close behind, while the two tree-based methods performed less well on this TF-IDF representation.
+
+For the best model, the confusion matrix was:
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+ & Pred. Neg. & Pred. Neu. & Pred. Pos. \\
+\midrule
+Actual Neg. & 324 & 4 & 6 \\
+Actual Neu. & 5 & 323 & 4 \\
+Actual Pos. & 0 & 5 & 329 \\
+\bottomrule
+\end{tabular}
+\caption{Confusion matrix for Multinomial Naive Bayes.}
+\label{tab:confusion}
+\end{table}
+
+The model correctly classified most of the examples in all three classes. In particular, 329 of the 334 positive test samples were correctly identified, while 323 of 332 neutral samples and 324 of 334 negative samples were classified correctly.
+
+\section{Sarcasm Detection}
+The sarcasm module follows a parallel experimental design. After preprocessing the supplied Marathi sarcasm dataset, the text will be separated from the target label, a stratified train--test split will be created, and TF-IDF features will be generated using the training data only.
+
+The same five machine learning classifiers will then be trained and compared. The best model will be selected using the same evaluation measures used for sentiment analysis. The final sarcasm performance table will be inserted after the experiments are completed.
+
+\section{Deep Learning Approach}
+The next stage of the study investigates deep learning models for Marathi sentiment and sarcasm classification. The purpose of this stage is to determine whether a neural model can capture useful patterns that are not represented fully by sparse TF-IDF features.
+
+\textit{This section will be updated with the exact architecture, training settings, and measured results after the deep learning experiments are completed.}
+
+\section{Transformer-Based Approach}
+Transformer models provide contextual representations and have become a standard approach for many NLP tasks \citep{vaswani2017,devlin2019}. In this project, transformer-based models will be evaluated for Marathi text to examine whether contextual representations can improve sentiment and sarcasm classification.
+
+\textit{This section will be updated with the selected transformer model, fine-tuning setup, and measured results after the experiments are completed.}
+
+\section{Application Design}
+The final system is designed as a user-facing Marathi text analysis application. The application separates the sentiment and sarcasm models into individual modules while also providing a combined analysis option.
+
+The planned user features include:
+\begin{itemize}
+    \item individual sentiment analysis;
+    \item individual sarcasm detection;
+    \item combined sentiment and sarcasm analysis;
+    \item an explanation of the predicted result;
+    \item confidence information where supported by the model;
+    \item user authentication, profile, dashboard, and history;
+    \item saved or favourite analyses;
+    \item sharing and exporting analysis results; and
+    \item a chatbot for conversational interaction with the analysis system.
+\end{itemize}
+
+A typical combined request is passed through both modules, after which the application can present the outputs together. This allows a sentence to be reported, for example, as negative sentiment with detected sarcasm rather than forcing the user to inspect the two modules separately.
+
+\section{Discussion}
+The sentiment experiments show that classical machine learning can already provide strong performance on a carefully prepared Marathi dataset. The best result came from Multinomial Naive Bayes, which slightly outperformed SVM and Logistic Regression. The performance difference is small, which suggests that the dataset contains patterns that can be captured effectively using standard sparse text representations.
+
+The lower scores of Random Forest and Decision Tree indicate that the choice of classifier matters when working with high-dimensional TF-IDF features. However, the current results should be interpreted as a baseline for the broader study rather than as evidence that one model will be best for every Marathi NLP task.
+
+Sarcasm is expected to be more difficult than ordinary sentiment classification because the intended meaning often depends on context and indirect expression. The later deep learning and transformer experiments are therefore important for understanding whether richer contextual representations improve the final system.
+
+\section{Conclusion}
+This paper presents a Marathi NLP system that combines sentiment analysis and sarcasm detection. The sentiment component was developed using a 5,000-sample Marathi dataset and evaluated with five classical machine learning algorithms. After data cleaning and stratified evaluation, Multinomial Naive Bayes achieved the best result with 97.6\% accuracy and 97.6\% F1-score.
+
+A separate Marathi sarcasm dataset is used for the sarcasm module, and the same evaluation framework is being applied to it. The project is also being extended to deep learning and transformer-based approaches. The final application brings these components together so that users can analyse Marathi text for sentiment and sarcasm in one place.
+
+\section*{Limitations}
+The present paper reports the completed classical machine learning results for sentiment analysis. The sarcasm, deep learning, and transformer sections are not assigned numerical results here until their corresponding experiments are completed. In addition, Marathi NLP can be affected by informal spelling, mixed-language text, short social-media posts, and context-dependent expressions, which remain important challenges for future evaluation.
+
+\section*{Acknowledgments}
+The authors thank the faculty and institution for providing the academic setting and resources needed for this project. The authors also acknowledge the team member responsible for the sarcasm dataset and sarcasm module.
+
+\bibliographystyle{acl_natbib}
+\begin{thebibliography}{9}
+
+\bibitem[Breiman, 2001]{breiman2001}
+Leo Breiman. 2001.
+\newblock Random forests.
+\newblock \emph{Machine Learning}, 45(1):5--32.
+
+\bibitem[Devlin et al., 2019]{devlin2019}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019.
+\newblock BERT: Pre-training of deep bidirectional transformers for language understanding.
+\newblock In \emph{Proceedings of NAACL-HLT}, pages 4171--4186.
+
+\bibitem[Joachims, 1998]{joachims1998}
+Thorsten Joachims. 1998.
+\newblock Text categorization with support vector machines: Learning with many relevant features.
+\newblock In \emph{Proceedings of ECML}, pages 137--142.
+
+\bibitem[Manning et al., 2008]{manning2008}
+Christopher D. Manning, Prabhakar Raghavan, and Hinrich Schutze. 2008.
+\newblock \emph{Introduction to Information Retrieval}.
+\newblock Cambridge University Press.
+
+\bibitem[Pedregosa et al., 2011]{pedregosa2011}
+Fabian Pedregosa, Gael Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron Weiss, Vincent Dubourg, et al. 2011.
+\newblock Scikit-learn: Machine learning in Python.
+\newblock \emph{Journal of Machine Learning Research}, 12:2825--2830.
+
+\bibitem[Quinlan, 1986]{quinlan1986}
+J. Ross Quinlan. 1986.
+\newblock Induction of decision trees.
+\newblock \emph{Machine Learning}, 1:81--106.
+
+\bibitem[Vaswani et al., 2017]{vaswani2017}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, and Illia Polosukhin. 2017.
+\newblock Attention is all you need.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pages 5998--6008.
+
+\bibitem[Teammate dataset, 2026]{teammatedataset}
+Project team. 2026.
+\newblock Marathi sarcasm dataset used in this study.
+
+\end{thebibliography}
+
+\end{document}
