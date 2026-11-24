@@ -1,0 +1,725 @@
+/* Main page */
+.tm-sarcasm-page {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px 28px 36px;
+  box-sizing: border-box;
+  color: #14213d;
+}
+
+.tm-sarcasm-page *,
+.tm-sarcasm-page *::before,
+.tm-sarcasm-page *::after {
+  box-sizing: border-box;
+}
+
+.tm-sarcasm-page-header {
+  margin-bottom: 18px;
+}
+
+.tm-sarcasm-page-header p {
+  margin: 0;
+  color: var(--text-secondary, #64748b);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Cards */
+.tm-sarcasm-card {
+  min-width: 0;
+  padding: 24px;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #dce3f5);
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(37, 53, 100, 0.07);
+}
+
+/* Input card: full width */
+.tm-sarcasm-input-card {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.tm-sarcasm-heading,
+.tm-sarcasm-result-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.tm-sarcasm-heading {
+  margin-bottom: 20px;
+}
+
+.tm-sarcasm-heading h2,
+.tm-sarcasm-result-heading h2 {
+  margin: 0;
+  color: var(--text-primary, #14213d);
+  font-size: 22px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.tm-sarcasm-heading p,
+.tm-sarcasm-result-heading p {
+  margin: 7px 0 0;
+  color: var(--text-secondary, #64748b);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.tm-sarcasm-heading-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid #e1dcff;
+  border-radius: 12px;
+  background: #f5f2ff;
+  color: #7057ef;
+}
+
+/* Text input */
+.tm-sarcasm-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-primary, #14213d);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.tm-sarcasm-textarea {
+  display: block;
+  width: 100%;
+  min-height: 130px;
+  padding: 14px 15px;
+  resize: vertical;
+  border: 1px solid var(--border-color, #ccd6f4);
+  border-radius: 12px;
+  outline: none;
+  background: var(--input-bg, #fbfcff);
+  color: var(--text-primary, #14213d);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.7;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tm-sarcasm-textarea:focus {
+  border-color: #7057ef;
+  box-shadow: 0 0 0 3px rgba(112, 87, 239, 0.12);
+}
+
+.tm-sarcasm-textarea::placeholder {
+  color: #94a3b8;
+}
+
+.tm-sarcasm-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(--text-secondary, #7183a2);
+  font-size: 12px;
+}
+
+/* Sample sentences */
+.tm-sarcasm-samples {
+  margin-top: 24px;
+}
+
+.tm-sarcasm-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tm-sarcasm-section-heading h3 {
+  margin: 0;
+  color: var(--text-primary, #14213d);
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.tm-sarcasm-section-heading > span {
+  color: var(--text-secondary, #7183a2);
+  font-size: 12px;
+}
+
+.tm-sarcasm-sample-list {
+  display: grid;
+  gap: 9px;
+}
+
+.tm-sarcasm-sample {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color, #dbe3f7);
+  border-radius: 10px;
+  background: var(--card-bg, #fff);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.tm-sarcasm-sample:hover {
+  border-color: #8b78f6;
+  background: var(--surface-bg, #f8f7ff);
+  transform: translateY(-1px);
+}
+
+.tm-sarcasm-sample > span {
+  justify-self: start;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.tm-sarcasm-sample small {
+  min-width: 0;
+  color: var(--text-secondary, #536987);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.sarcastic {
+  background: #fff0dc;
+  color: #c86a00;
+}
+
+.non-sarcastic {
+  background: #e6f8ef;
+  color: #07854b;
+}
+
+/* All-model information */
+.tm-sarcasm-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid #dcdfff;
+  border-radius: 12px;
+  background: var(--surface-bg, #f7f7ff);
+}
+
+.tm-sarcasm-info > svg {
+  flex-shrink: 0;
+  color: #7057ef;
+}
+
+.tm-sarcasm-info strong {
+  display: block;
+  color: var(--text-primary, #14213d);
+  font-size: 14px;
+}
+
+.tm-sarcasm-info p {
+  margin: 7px 0 0;
+  color: var(--text-secondary, #64748b);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* Buttons */
+.tm-sarcasm-primary,
+.tm-sarcasm-secondary,
+.tm-sarcasm-another {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.tm-sarcasm-primary {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  background: linear-gradient(110deg, #7554ee, #5369f5);
+  color: #fff;
+  box-shadow: 0 5px 14px rgba(101, 83, 235, 0.18);
+}
+
+.tm-sarcasm-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(101, 83, 235, 0.25);
+}
+
+.tm-sarcasm-primary:disabled,
+.tm-sarcasm-secondary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.tm-sarcasm-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tm-sarcasm-secondary {
+  padding: 10px;
+  border: 1px solid var(--border-color, #ccd6f4);
+  background: var(--card-bg, #fff);
+  color: var(--text-secondary, #425574);
+}
+
+.tm-sarcasm-secondary:hover:not(:disabled) {
+  border-color: #8b78f6;
+  background: var(--surface-bg, #f8f7ff);
+}
+
+/* Results: two cards below the input */
+.tm-sarcasm-results {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 20px;
+}
+
+.tm-sarcasm-final,
+.tm-sarcasm-individual {
+  min-width: 0;
+}
+
+.tm-sarcasm-final {
+  border-left: 4px solid #f07800;
+}
+
+.tm-sarcasm-final.non-sarcastic {
+  border-left-color: #0da75a;
+}
+
+/* Result headings and badges */
+.tm-sarcasm-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 9px;
+  color: #7057ef;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+}
+
+.tm-sarcasm-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 7px 11px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.tm-sarcasm-badge.sarcastic {
+  background: #fff0dc;
+  color: #c86a00;
+}
+
+.tm-sarcasm-badge.non-sarcastic {
+  background: #e6f8ef;
+  color: #07854b;
+}
+
+/* Analyzed text */
+.tm-sarcasm-analyzed-text {
+  margin-top: 20px;
+  padding: 14px 15px;
+  border: 1px solid var(--border-color, #e0e5f8);
+  border-radius: 10px;
+  background: var(--surface-bg, #f8f8ff);
+}
+
+.tm-sarcasm-analyzed-text > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #7057ef;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.tm-sarcasm-analyzed-text p {
+  margin: 0;
+  color: var(--text-primary, #263858);
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+/* Final prediction */
+.tm-sarcasm-final-value {
+  margin: 22px 0;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 850;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.tm-sarcasm-final-value.sarcastic {
+  background: none;
+  color: #d97706;
+}
+
+.tm-sarcasm-final-value.non-sarcastic {
+  background: none;
+  color: #079b53;
+}
+
+.tm-sarcasm-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 14px;
+}
+
+.tm-sarcasm-stats > div {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.tm-sarcasm-stats span,
+.tm-sarcasm-model-confidence span {
+  color: var(--text-secondary, #7183a2);
+  font-size: 12px;
+}
+
+.tm-sarcasm-stats strong {
+  color: var(--text-primary, #14213d);
+  font-size: 19px;
+  font-weight: 800;
+}
+
+/* Progress bars */
+.tm-sarcasm-progress {
+  width: 100%;
+  height: 7px;
+  margin-top: 15px;
+  overflow: hidden;
+  border-radius: 30px;
+  background: var(--track-bg, #e8ebf3);
+}
+
+.tm-sarcasm-progress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #f07800;
+  transition: width 0.35s ease;
+}
+
+.tm-sarcasm-progress > span.non-sarcastic {
+  background: #0da75a;
+}
+
+.tm-sarcasm-divider {
+  height: 1px;
+  margin: 23px 0 20px;
+  background: var(--border-color, #e0e5f8);
+}
+
+.tm-sarcasm-vote-title {
+  margin: 0 0 17px;
+  color: var(--text-primary, #14213d);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.tm-sarcasm-votes {
+  display: grid;
+  gap: 15px;
+}
+
+.tm-sarcasm-vote-row {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 10px;
+}
+
+.tm-sarcasm-vote-row > span {
+  color: var(--text-secondary, #64748b);
+  font-size: 12px;
+}
+
+.tm-sarcasm-vote-row > strong {
+  color: var(--text-primary, #14213d);
+  font-size: 12px;
+  text-align: right;
+}
+
+.tm-sarcasm-vote-track {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 30px;
+  background: var(--track-bg, #e6e8ef);
+}
+
+.tm-sarcasm-vote-track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #f07800;
+}
+
+.tm-sarcasm-vote-track > span.non-sarcastic {
+  background: #0da75a;
+}
+
+.tm-sarcasm-note {
+  margin: 22px 0 0;
+  color: var(--text-secondary, #7183a2);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Individual model cards */
+.tm-sarcasm-count {
+  padding: 7px 10px;
+  border: 1px solid var(--border-color, #e0e5f8);
+  border-radius: 30px;
+  color: var(--text-secondary, #64748b);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.tm-sarcasm-model-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 22px;
+}
+
+.tm-sarcasm-model {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid var(--border-color, #dce3f5);
+  border-radius: 12px;
+  background: var(--card-bg, #fff);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.tm-sarcasm-model:hover {
+  border-color: #a99afa;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37, 53, 100, 0.06);
+}
+
+.tm-sarcasm-model-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tm-sarcasm-model-top > strong {
+  min-width: 0;
+  padding-top: 5px;
+  color: var(--text-primary, #14213d);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.tm-sarcasm-model-confidence {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.tm-sarcasm-model-confidence strong {
+  color: var(--text-primary, #14213d);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.tm-sarcasm-model .tm-sarcasm-progress {
+  height: 6px;
+  margin-top: 10px;
+}
+
+.tm-sarcasm-model-errors,
+.tm-sarcasm-error {
+  margin-top: 15px;
+  padding: 12px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fff5f5;
+  color: #b42332;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.tm-sarcasm-model-errors p {
+  margin: 7px 0 0;
+}
+
+.tm-sarcasm-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13px;
+}
+
+.tm-sarcasm-error svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tm-sarcasm-warning {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 13px;
+}
+
+/* Analyze another */
+.tm-sarcasm-another {
+  width: 100%;
+  margin-top: 22px;
+  padding: 11px 16px;
+  border: 1px solid var(--border-color, #d2daf1);
+  background: var(--card-bg, #fff);
+  color: var(--text-primary, #33466a);
+}
+
+.tm-sarcasm-another:hover {
+  border-color: #8b78f6;
+  background: var(--surface-bg, #f8f7ff);
+}
+
+/* Empty state */
+.tm-sarcasm-empty {
+  display: flex;
+  min-height: 350px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.tm-sarcasm-empty-icon {
+  display: grid;
+  width: 65px;
+  height: 65px;
+  place-items: center;
+  margin-bottom: 20px;
+  border: 1px solid #e1dcff;
+  border-radius: 20px;
+  background: #f3f0ff;
+  color: #7057ef;
+}
+
+.tm-sarcasm-empty h2 {
+  margin: 0;
+  color: var(--text-primary, #14213d);
+  font-size: 21px;
+}
+
+.tm-sarcasm-empty p {
+  max-width: 420px;
+  margin: 12px 0 0;
+  color: var(--text-secondary, #7183a2);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .tm-sarcasm-page {
+    padding: 20px;
+  }
+
+  .tm-sarcasm-results {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tm-sarcasm-empty {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tm-sarcasm-page {
+    padding: 14px;
+  }
+
+  .tm-sarcasm-card {
+    padding: 17px;
+    border-radius: 14px;
+  }
+
+  .tm-sarcasm-heading h2,
+  .tm-sarcasm-result-heading h2 {
+    font-size: 19px;
+  }
+
+  .tm-sarcasm-textarea {
+    min-height: 120px;
+    font-size: 15px;
+  }
+
+  .tm-sarcasm-sample {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .tm-sarcasm-stats {
+    gap: 12px;
+  }
+
+  .tm-sarcasm-stats strong {
+    font-size: 17px;
+  }
+
+  .tm-sarcasm-vote-row {
+    grid-template-columns: 78px minmax(0, 1fr) 43px;
+    gap: 7px;
+  }
+
+  .tm-sarcasm-model-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tm-sarcasm-result-heading {
+    gap: 8px;
+  }
+
+  .tm-sarcasm-badge {
+    padding: 6px 8px;
+  }
+}

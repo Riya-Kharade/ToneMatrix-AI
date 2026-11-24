@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── Light theme (default) ──────────────────────── */
+:root {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Backgrounds */
+  --bg:              #f4f7ff;
+  --bg-body:         linear-gradient(180deg, #f7f8ff 0%, #eef2ff 100%);
+  --panel:           #ffffff;
+  --panel-soft:      #eef3ff;
+  --panel-strong:    #e8ecff;
+  --card-bg:         #ffffff;
+  --card-border:     #e5e7f0;
+
+  /* Sidebar */
+  --sidebar-bg:      linear-gradient(180deg, #050505 0%, #10101a 100%);
+  --sidebar-border:  rgba(255,255,255,0.12);
+  --sidebar-text:    #edf2ff;
+
+  /* Topbar */
+  --topbar-bg:       rgba(255,255,255,0.36);
+  --topbar-border:   rgba(148,163,184,0.18);
+  --topbar-title:    #111827;
+  --topbar-breadcrumb: #6b7280;
+
+  /* Text */
+  --navy:            #1a2340;
+  --navy-soft:       #273353;
+  --text-primary:    #172033;
+  --text-secondary:  #667085;
+  --text-muted:      #98a2b3;
+
+  /* Accent */
+  --primary:         #4f46e5;
+  --primary-2:       #7c3aed;
+  --accent:          #6c5ce7;
+  --accent-soft:     #f0efff;
+  --accent-border:   #dcd7ff;
+  --primary-soft:    rgba(79,70,229,0.12);
+
+  /* Functional */
+  --success:         #16a34a;
+  --warning:         #f59e0b;
+  --danger:          #ef4444;
+  --muted:           #667085;
+  --border:          #e7ebf5;
+  --shadow:          0 18px 40px rgba(31,41,55,0.08);
+
+  /* Inputs */
+  --input-bg:        #fcfdff;
+  --input-border:    #cfd6e7;
+  --input-text:      #1a2340;
+  --input-placeholder: #98a2b3;
+  --input-focus-border: #6c5ce7;
+  --input-focus-shadow: rgba(108,92,231,0.14);
+
+  /* Popovers / Dropdowns */
+  --popover-bg:      #ffffff;
+  --popover-border:  #e5e7f0;
+  --popover-shadow:  0 16px 32px rgba(31,41,72,0.14);
+  --popover-text:    #172033;
+
+  /* Buttons */
+  --btn-secondary-bg:     #ffffff;
+  --btn-secondary-border: #cdd4e4;
+  --btn-secondary-text:   #4d5870;
+
+  /* Metrics / Charts */
+  --chart-grid:      rgba(100,116,139,0.15);
+  --chart-text:      #64748b;
+  --chart-tooltip-bg: #ffffff;
+  --chart-tooltip-border: #e5e7f0;
+
+  /* Badges */
+  --badge-positive-bg:   #eaf8ef;
+  --badge-positive-text: #16803c;
+  --badge-negative-bg:   #fff0f0;
+  --badge-negative-text: #b42318;
+  --badge-neutral-bg:    #edf4ff;
+  --badge-neutral-text:  #2457a7;
+
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+}
+
+/* ── Dark theme ─────────────────────────────────── */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Backgrounds */
+  --bg:              #0b1020;
+  --bg-body:         linear-gradient(180deg, #0b1020 0%, #0f172a 100%);
+  --panel:           #151d30;
+  --panel-soft:      #1a2540;
+  --panel-strong:    #1f2d4a;
+  --card-bg:         #151d30;
+  --card-border:     #2b3851;
+
+  /* Topbar */
+  --topbar-bg:       rgba(15,23,42,0.9);
+  --topbar-border:   #263247;
+  --topbar-title:    #f3f4f6;
+  --topbar-breadcrumb: #94a3b8;
+
+  /* Text */
+  --navy:            #e5e7eb;
+  --navy-soft:       #cbd5e1;
+  --text-primary:    #f1f5f9;
+  --text-secondary:  #94a3b8;
+  --text-muted:      #64748b;
+
+  /* Accent — keep purple branding */
+  --accent:          #8b78f6;
+  --accent-soft:     #1e1540;
+  --accent-border:   #43346d;
+  --primary-soft:    rgba(139,120,246,0.15);
+
+  /* Functional */
+  --muted:           #64748b;
+  --border:          #2b3851;
+  --shadow:          0 18px 40px rgba(0,0,0,0.3);
+
+  /* Inputs */
+  --input-bg:        #1a2440;
+  --input-border:    #2d3f60;
+  --input-text:      #e2e8f0;
+  --input-placeholder: #4b6080;
+  --input-focus-border: #8b78f6;
+  --input-focus-shadow: rgba(139,120,246,0.18);
+
+  /* Popovers */
+  --popover-bg:      #1a2540;
+  --popover-border:  #2b3851;
+  --popover-shadow:  0 16px 32px rgba(0,0,0,0.4);
+  --popover-text:    #e5e7eb;
+
+  /* Buttons */
+  --btn-secondary-bg:     #1a2440;
+  --btn-secondary-border: #2d3f60;
+  --btn-secondary-text:   #94a3b8;
+
+  /* Charts */
+  --chart-grid:      rgba(148,163,184,0.12);
+  --chart-text:      #94a3b8;
+  --chart-tooltip-bg: #1a2540;
+  --chart-tooltip-border: #2b3851;
+
+  /* Badges */
+  --badge-positive-bg:   #052e16;
+  --badge-positive-text: #4ade80;
+  --badge-negative-bg:   #2d0b0b;
+  --badge-negative-text: #f87171;
+  --badge-neutral-bg:    #0d2240;
+  --badge-neutral-text:  #60a5fa;
+}
+
+/* ── Global resets ───────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg-body);
+  color: var(--navy);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--navy);
+}
+
+p {
+  color: var(--text-secondary);
+}
